@@ -175,6 +175,7 @@ Description: A cat(1) clone with wings.
 EOF
 
     fakeroot dpkg-deb --build "$tempdir" "${dpkgname}_${version}_${architecture}.deb"
+    sudo apt-get install -qq --no-install-recommends lintian
     lintian "${dpkgname}_${version}_${architecture}.deb"
 }
 
