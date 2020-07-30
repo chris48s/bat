@@ -6,6 +6,7 @@ set -ex
 if [[ -z "$PROJECT_NAME" ]]; then
     export PROJECT_NAME="bat"
 fi
+export TRAVIS_TAG="v0.15.4"
 
 build() {
     cargo build --bins --target "$TARGET" --release --verbose
@@ -174,6 +175,7 @@ Description: A cat(1) clone with wings.
 EOF
 
     fakeroot dpkg-deb --build "$tempdir" "${dpkgname}_${version}_${architecture}.deb"
+    lintian "${dpkgname}_${version}_${architecture}.deb"
 }
 
 
