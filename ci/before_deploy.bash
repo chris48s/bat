@@ -110,7 +110,7 @@ make_deb() {
 
     # manpage
     install -Dm644 target/"$TARGET"/release/build/"$PROJECT_NAME"-*/out/assets/manual/bat.1 "$tempdir/usr/share/man/man1/$PROJECT_NAME.1"
-    gzip --best "$tempdir/usr/share/man/man1/$PROJECT_NAME.1"
+    gzip -n --best "$tempdir/usr/share/man/man1/$PROJECT_NAME.1"
 
     # completions
     install -Dm644 target/"$TARGET"/release/build/"$PROJECT_NAME"-*/out/assets/completions/bat.fish "$tempdir/usr/share/fish/vendor_completions.d/$PROJECT_NAME.fish"
