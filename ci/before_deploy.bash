@@ -170,7 +170,7 @@ Homepage: $homepage
 Architecture: $architecture
 Provides: $PROJECT_NAME
 Conflicts: $conflictname
-Description: A cat(1) clone with wings.
+Description: cat(1) clone with wings.
  A cat(1) clone with syntax highlighting and Git integration.
 EOF
 
