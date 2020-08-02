@@ -109,6 +109,14 @@ make_deb() {
     install -Dm755 "target/$TARGET/release/$PROJECT_NAME" "$tempdir/usr/bin/$PROJECT_NAME"
     "${gcc_prefix}"strip "$tempdir/usr/bin/$PROJECT_NAME"
 
+    # Work out shared library dependencies
+    # dpkg-shlibdeps requires debian/control file. Dummy it and clean up
+    mkdir "./debian"
+    touch "./debian/control"
+    dpkg-shlibdeps -O "$tempdir/usr/bin/$PROJECT_NAME"
+    depends="$(dpkg-shlibdeps -O "$tempdir/usr/bin/$PROJECT_NAME" 2> /dev/null | sed 's/^shlibs:Depends=//')"
+    rm -rf "./debian"
+
     # manpage
     install -Dm644 target/"$TARGET"/release/build/"$PROJECT_NAME"-*/out/assets/manual/bat.1 "$tempdir/usr/share/man/man1/$PROJECT_NAME.1"
     gzip -n --best "$tempdir/usr/share/man/man1/$PROJECT_NAME.1"
@@ -173,6 +181,7 @@ Priority: optional
 Maintainer: $maintainer
 Homepage: $homepage
 Architecture: $architecture
+Depends: $depends
 Provides: $PROJECT_NAME
 Conflicts: $conflictname
 Description: cat(1) clone with wings.
