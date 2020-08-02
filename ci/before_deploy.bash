@@ -120,6 +120,8 @@ make_deb() {
     install -Dm644 README.md "$tempdir/usr/share/doc/$PROJECT_NAME/README.md"
     install -Dm644 LICENSE-MIT "$tempdir/usr/share/doc/$PROJECT_NAME/LICENSE-MIT"
     install -Dm644 LICENSE-APACHE "$tempdir/usr/share/doc/$PROJECT_NAME/LICENSE-APACHE"
+    install -Dm644 CHANGELOG.md "$tempdir/usr/share/doc/$PROJECT_NAME/changelog"
+    gzip -n --best "$tempdir/usr/share/doc/$PROJECT_NAME/changelog"
 
     cat > "$tempdir/usr/share/doc/$PROJECT_NAME/copyright" <<EOF
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
