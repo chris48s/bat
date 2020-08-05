@@ -392,6 +392,7 @@ jobs:
           #sudo apt-get install -qq --no-install-recommends lintian
           #lintian "${{ steps.vars.outputs.STAGING }}/${{ steps.vars.outputs.DPKG_NAME }}"
           dpkg --info "${{ steps.vars.outputs.STAGING }}/${{ steps.vars.outputs.DPKG_NAME }}"
+          dpkg -c "${{ steps.vars.outputs.STAGING }}/${{ steps.vars.outputs.DPKG_NAME }}"
         fi
     - name: Publish archives and packages
       uses: softprops/action-gh-release@v1
