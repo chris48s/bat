@@ -405,7 +405,6 @@ jobs:
           #maybe if you can work out the depends line you could ask about that one in the PR?
 
           # build dpkg
-          ls "${DPKG_DIR}/usr/share/doc/${{ env.PROJECT_NAME }}"
           fakeroot dpkg-deb --build "${DPKG_DIR}" "${{ steps.vars.outputs.STAGING }}/${{ steps.vars.outputs.DPKG_NAME }}"
           sudo apt-get install -qq --no-install-recommends lintian
           lintian "${{ steps.vars.outputs.STAGING }}/${{ steps.vars.outputs.DPKG_NAME }}"
