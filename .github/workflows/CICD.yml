@@ -166,7 +166,7 @@ jobs:
         echo ::set-output name=DPKG_ARCH::${DPKG_ARCH}
         # DPKG version?
         #unset DPKG_VERSION ; if [[ $REF_TAG =~ ^[vV]?[0-9].* ]]; then DPKG_VERSION=${REF_TAG/#[vV]/} ; fi
-        DPKG_VERSION="0.17.0
+        DPKG_VERSION="0.17.0"
         echo set-output name=DPKG_VERSION::${DPKG_VERSION}
         echo ::set-output name=DPKG_VERSION::${DPKG_VERSION}
         # DPKG base name/conflicts?
