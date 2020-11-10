@@ -312,9 +312,6 @@ jobs:
           mkdir "./debian"
           touch "./debian/control"
           case ${{ matrix.job.target }} in
-            aarch64-*-linux-*) DEPENDS="$(dpkg-shlibdeps -l/usr/aarch64-linux-gnu/lib -O "${DPKG_DIR}/usr/bin/${{ env.PROJECT_NAME }}" 2> /dev/null | sed 's/^shlibs:Depends=//')" ;;
-            arm-*-linux-*hf) DEPENDS="$(dpkg-shlibdeps -l/usr/arm-linux-gnueabihf/lib -O "${DPKG_DIR}/usr/bin/${{ env.PROJECT_NAME }}" 2> /dev/null | sed 's/^shlibs:Depends=//')" ;;
-            i686-*-linux-*) DEPENDS="$(dpkg-shlibdeps -O "${DPKG_DIR}/usr/bin/${{ env.PROJECT_NAME }}" 2> /dev/null | sed 's/^shlibs:Depends=//')" ;;
             x86_64-*-linux-*) DEPENDS="$(dpkg-shlibdeps -O "${DPKG_DIR}/usr/bin/${{ env.PROJECT_NAME }}" 2> /dev/null | sed 's/^shlibs:Depends=//')" ;;
           esac;
           rm -rf "./debian"
