@@ -165,7 +165,8 @@ jobs:
         echo set-output name=DPKG_ARCH::${DPKG_ARCH}
         echo ::set-output name=DPKG_ARCH::${DPKG_ARCH}
         # DPKG version?
-        unset DPKG_VERSION ; if [[ $REF_TAG =~ ^[vV]?[0-9].* ]]; then DPKG_VERSION=${REF_TAG/#[vV]/} ; fi
+        #unset DPKG_VERSION ; if [[ $REF_TAG =~ ^[vV]?[0-9].* ]]; then DPKG_VERSION=${REF_TAG/#[vV]/} ; fi
+        DPKG_VERSION="0.17.0
         echo set-output name=DPKG_VERSION::${DPKG_VERSION}
         echo ::set-output name=DPKG_VERSION::${DPKG_VERSION}
         # DPKG base name/conflicts?
@@ -391,6 +392,7 @@ jobs:
 
           # build dpkg
           fakeroot dpkg-deb --build "${DPKG_DIR}" "${{ steps.vars.outputs.STAGING }}/${{ steps.vars.outputs.DPKG_NAME }}"
+          dpkg --info "${{ steps.vars.outputs.STAGING }}/${{ steps.vars.outputs.DPKG_NAME }}"
         fi
     - name: Publish archives and packages
       uses: softprops/action-gh-release@v1
